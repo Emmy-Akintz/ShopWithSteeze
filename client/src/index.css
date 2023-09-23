@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.darkBackground {
+    background-color: rgba(0,0,0,0.3);
+}

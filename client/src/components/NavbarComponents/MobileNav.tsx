@@ -72,7 +72,7 @@ export default function MobileNav() {
                 className={`w-[250px] bg-white py-6 px-4 h-screen absolute transition-all duration-300 ease-in flex flex-col justify-between ${showMenu ? 'left-0' : ' left-[-250px]'}`}
                 ref={menuref}
             >
-                <div className='flex flex-col gap-6'>
+                <div className='flex flex-col gap-6 '>
                     <div className='flex justify-end'>
                         <button 
                             className='bg-white p-2 rounded-full shadow-lg text-[1.2rem]' 
@@ -106,7 +106,7 @@ export default function MobileNav() {
                     <p>Login or Register</p>
                 </button>
             </div>
-            <div className={`flex justify-between items-center p-4 w-full `}>
+            <div className={`flex justify-between items-center p-4 w-full bg-white ${showCart || showMenu ? 'bg-black/0' : ''}`}>
                 <i 
                     className='text-[1.5rem] text-[#000000]'
                     onClick={(e)=>{

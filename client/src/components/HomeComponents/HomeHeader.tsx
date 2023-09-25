@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import { itemType } from "../../types/generalAppType";
 import useWindowDimensions from "../../windowDimensions";
+import Loader from "../Loader";
 
 export default function HomeHeader() {
 
@@ -39,37 +40,40 @@ export default function HomeHeader() {
 
     return (
         <div className="bg-white md:h-[70vh] w-full md:grid md:grid-cols-2 px-4 md:px-10 lg:px-20">
-            <div className={`flex flex-col  gap-8 justify-center items-start mt-8 lg:mt-0 px-4 md:px-0 bg-cover bg-center md:bg-white transition-all duration-500 ease-in`}>
+            <div className={`flex flex-col  gap-8 justify-center mt-8 lg:mt-0 px-4 md:px-0 bg-cover bg-center md:bg-white transition-all duration-500 ease-in`}>
                 
-                <div className=" md:hidden slider-container w-full h-[300px] relative overflow-hidden"> 
-                    {data?.map((data, index: number) => (
-                        <div
-                            key={index}
-                            className={`flex items-center justify-center slider-item absolute w-full h-[300px] text-2xl transform transition-transform duration-500 ease-in ${
-                            index === currentIndex ? '' : 'translate-x-full opacity-0'
-                            }`}
-                        >
-                            <img 
-                                src={`${serverUrl}${data.image}`}
-                                className="h-full"
-                            />
-                        </div>
-                    ))}
-                </div>
+                { isLoading ?<div className="md:hidden flex items-center justify-center"><Loader /></div>
+                : error ? <h1 className="md:hidden flex">There was an error</h1>
+                :  <div className=" md:hidden slider-container w-full h-[300px] relative overflow-hidden"> 
+                        {data?.map((data, index: number) => (
+                            <div
+                                key={index}
+                                className={`flex items-center justify-center slider-item absolute w-full h-[300px] text-2xl transform transition-transform duration-500 ease-in ${index === currentIndex ? '' : 'translate-x-full opacity-0'}`}
+                            >
+                                <img 
+                                    src={`${serverUrl}${data.image}`}
+                                    className="h-full"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                }
                 <h1 className="font-bold text-[2rem] md:text-[3rem]">Elevate Your Steeze with Our Exquisite Collection</h1>
                 <p className="md:text-[1.2rem]"> 
                     Shop with Steeze, where sophistication meets style. Discover our exquisite collection of men's jewelry,
                     meticulously crafted to elevate your everyday look. Whether you're seeking classic elegance or bold statements,
                     we have the perfect piece to complement your unique style. Start your style journey with us today.
                 </p>
-                <button 
-                    className="py-3 px-12 tracking-wider border-[1px] border-black bg-black text-white md:hover:bg-white md:hover:text-black transition-all duration-200 ease-in"
-                >
-                    SHOP NOW
-                </button>
+                <div>
+                    <button 
+                        className="py-3 px-12 tracking-wider border-[1px] border-black bg-black text-white md:hover:bg-white md:hover:text-black transition-all duration-200 ease-in"
+                    >
+                        SHOP NOW
+                    </button>
+                </div>
             </div>
-            { isLoading ? <></>
-            : error ? <h1>There was an error</h1>
+            { isLoading ? <div className="hidden md:flex items-center justify-center"><Loader /></div>
+            : error ? <h1 className="hidden md:flex">There was an error</h1>
             :  <div className="hidden md:block slider-container w-full h-full relative overflow-hidden"> 
                     {data?.map((data, index: number) => (
                         <div

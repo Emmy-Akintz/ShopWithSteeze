@@ -11,3 +11,13 @@ export type generalAppActionType = {
         showCartPayload?: boolean;
     }
 }
+
+export type itemType = {
+    name: string;
+    price: number;
+    category: string;
+    color?: string;
+    description?: string;
+    size: string;
+    image: string
+}

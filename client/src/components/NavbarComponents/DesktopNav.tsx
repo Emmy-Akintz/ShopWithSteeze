@@ -4,12 +4,12 @@ export default function DesktopNav() {
     return (
         <div className="py-4 px-10 grid grid-cols-3 place-content-center">
             <div className='flex items-center justify-start'>
-                <div className="flex items-center gap-4 lg:gap-10">
+                <nav className="flex items-center gap-4 lg:gap-10">
                     <button>Home</button>
                     <button>Shop</button>
                     <button>About</button>
                     <button>Contact</button>
-                </div>
+                </nav>
             </div>
             <div className='flex items-center justify-center'>
                 <img 

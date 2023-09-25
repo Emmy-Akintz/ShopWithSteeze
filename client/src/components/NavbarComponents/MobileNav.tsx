@@ -84,7 +84,7 @@ export default function MobileNav() {
                             <LiaTimesSolid />
                         </button>
                     </div>
-                    <div className='flex flex-col gap-6'>
+                    <nav className='flex flex-col gap-6'>
                         <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
                             <p>Home</p>
                             <i><HiChevronRight /></i>
@@ -97,7 +97,7 @@ export default function MobileNav() {
                             <p>Wishlist</p>
                             <i><HiChevronRight /></i>
                         </div>
-                    </div>
+                    </nav>
                 </div>
                 <button 
                     className='flex items-center gap-3 p-2 border-[1px] border-[#808080] justify-center'

@@ -1,6 +1,6 @@
 module.exports = mongoose => {
 
-    //User Schema
+    //Item Schema
     const schema = mongoose.Schema(
       {
         name: {
@@ -25,6 +25,10 @@ module.exports = mongoose => {
         },
         size: {
             type: Number,
+            required: true
+        },
+        image: {
+            type: String,
             required: true
         }
       },

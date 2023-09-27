@@ -106,7 +106,7 @@ export default function MobileNav() {
                     <p>Login or Register</p>
                 </button>
             </div>
-            <div className={`flex justify-between items-center p-4 w-full bg-white ${showCart || showMenu ? 'bg-black/0' : ''}`}>
+            <div className={`flex justify-between items-center p-4 w-full ${showCart || showMenu ? 'bg-black/0' : ' bg-white '}`}>
                 <i 
                     className='text-[1.5rem] text-[#000000]'
                     onClick={(e)=>{

@@ -125,3 +125,19 @@
     }
   }
   
+.scrollbarHidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbarHidden::-webkit-scrollbar{
+  display: none;
+}
+
+.slick-slide {
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

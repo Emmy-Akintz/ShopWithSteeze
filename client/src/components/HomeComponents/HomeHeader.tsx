@@ -2,23 +2,18 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { useState, useEffect } from 'react';
 import { itemType } from "../../types/generalAppType";
-import useWindowDimensions from "../../windowDimensions";
 import Loader from "../Loader";
 
 export default function HomeHeader() {
-
-    const {width} = useWindowDimensions()
-    const isMobile = width <= 768
-
-    console.log(isMobile, width)
     
     const url = 'http://localhost:3000/item/storeitems/'
+    
     async function fetchRecipes(){
         const response = await axios.get(url)
         return response.data as itemType[]
     }
 
-    const { data, isLoading, error } = useQuery('featuredItems', fetchRecipes)
+    const { data, isLoading, error } = useQuery('headerItems', fetchRecipes)
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -28,7 +23,7 @@ export default function HomeHeader() {
        if(data){
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => {
-                return (prevIndex + 1) % data.length
+                return (prevIndex + 1) % 3
             });
         }, 4000);
 
@@ -39,13 +34,13 @@ export default function HomeHeader() {
     
 
     return (
-        <div className="bg-white md:h-[70vh] w-full md:grid md:grid-cols-2 px-4 md:px-10 lg:px-20">
-            <div className={`flex flex-col  gap-8 justify-center mt-8 lg:mt-0 px-4 md:px-0 bg-cover bg-center md:bg-white transition-all duration-500 ease-in`}>
+        <header className="bg-white w-full md:grid md:grid-cols-2 px-8 md:px-10 lg:px-20">
+            <div className={`flex flex-col  gap-8 justify-center mt-8 lg:mt-24 bg-cover bg-center md:bg-white transition-all duration-500 ease-in`}>
                 
                 { isLoading ?<div className="md:hidden flex items-center justify-center"><Loader /></div>
                 : error ? <h1 className="md:hidden flex">There was an error</h1>
                 :  <div className=" md:hidden slider-container w-full h-[300px] relative overflow-hidden"> 
-                        {data?.map((data, index: number) => (
+                        {data?.slice(0,3).map((data, index: number) => (
                             <div
                                 key={index}
                                 className={`flex items-center justify-center slider-item absolute w-full h-[300px] text-2xl transform transition-transform duration-500 ease-in ${index === currentIndex ? '' : 'translate-x-full opacity-0'}`}
@@ -75,7 +70,7 @@ export default function HomeHeader() {
             { isLoading ? <div className="hidden md:flex items-center justify-center"><Loader /></div>
             : error ? <h1 className="hidden md:flex">There was an error</h1>
             :  <div className="hidden md:block slider-container w-full h-full relative overflow-hidden"> 
-                    {data?.map((data, index: number) => (
+                    {data?.slice(0,3).map((data, index: number) => (
                         <div
                             key={index}
                             className={`flex items-center justify-center slider-item absolute w-full h-full p-4 text-2xl transform transition-transform duration-500 ease-in ${
@@ -90,6 +85,6 @@ export default function HomeHeader() {
                     ))}
                 </div>
             }
-        </div>
+        </header>
     )
 }

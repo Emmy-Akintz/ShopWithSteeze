@@ -2,6 +2,7 @@ import { HiOutlineShoppingCart, HiOutlineBars3BottomLeft, HiOutlineUser, HiChevr
 import { LiaTimesSolid } from 'react-icons/lia'
 import {  useRef, useEffect } from 'react'
 import { useGeneralAppContext } from '../../functions/useGeneralAppContext'
+import { Link } from 'react-router-dom'
 
 export default function MobileNav() {
 
@@ -85,18 +86,36 @@ export default function MobileNav() {
                         </button>
                     </div>
                     <nav className='flex flex-col gap-6'>
-                        <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
-                            <p>Home</p>
-                            <i><HiChevronRight /></i>
-                        </div>
-                        <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
-                            <p>Shop</p>
-                            <i><HiChevronRight /></i>
-                        </div>
-                        <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
-                            <p>Wishlist</p>
-                            <i><HiChevronRight /></i>
-                        </div>
+                        <Link to='/'>
+                            <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
+                                <p>Home</p>
+                                <i><HiChevronRight /></i>
+                            </div>
+                        </Link>
+                        <Link to='/shop'>
+                            <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
+                                <p>Shop</p>
+                                <i><HiChevronRight /></i>
+                            </div>
+                        </Link>
+                        <Link to='/'>
+                            <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
+                                <p>About us</p>
+                                <i><HiChevronRight /></i>
+                            </div>
+                        </Link>
+                        <Link to='/'>
+                            <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
+                                <p>Contact us</p>
+                                <i><HiChevronRight /></i>
+                            </div>
+                        </Link>
+                        <Link to='/'>
+                            <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
+                                <p>Wishlist</p>
+                                <i><HiChevronRight /></i>
+                            </div>
+                        </Link>
                     </nav>
                 </div>
                 <button 
@@ -106,7 +125,7 @@ export default function MobileNav() {
                     <p>Login or Register</p>
                 </button>
             </div>
-            <div className={`flex justify-between items-center p-4 w-full ${showCart || showMenu ? 'bg-black/0' : ' bg-white '}`}>
+            <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu ? 'bg-black/0' : ' bg-white '}`}>
                 <i 
                     className='text-[1.5rem] text-[#000000]'
                     onClick={(e)=>{

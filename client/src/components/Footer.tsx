@@ -30,12 +30,12 @@ export default function Footer() {
                    <input 
                         placeholder='Name'
                         type='text'
-                        className='p-2 border-[1px] border-black bg-transparent'
+                        className='p-2 border-[1px] border-black bg-transparent max-w-[250px]'
                    /> 
                    <input 
                         placeholder='Email'
                         type='text'
-                        className='p-2 border-[1px] border-black bg-transparent'
+                        className='p-2 border-[1px] border-black bg-transparent max-w-[250px]'
                    /> 
                    <div>
                         <button type='button' className='py-2 px-8 bg-black text-white'>Send</button>

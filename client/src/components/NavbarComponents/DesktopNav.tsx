@@ -1,14 +1,15 @@
 import { HiOutlineShoppingCart, HiOutlineUser, HiOutlineHeart } from 'react-icons/hi2'
+import { Link } from 'react-router-dom'
 
 export default function DesktopNav() {
     return (
-        <div className="z-[999] bg-white py-4 px-10 lg:px-20 grid grid-cols-3 place-content-center">
+        <div className="z-[999] bg-white py-4 px-10 lg:px-20 grid grid-cols-3 place-content-center shadow-md">
             <div className='flex items-center justify-start'>
                 <nav className="flex items-center gap-4 lg:gap-10">
-                    <button>Home</button>
-                    <button>Shop</button>
-                    <button>About</button>
-                    <button>Contact</button>
+                    <Link to='/'>Home</Link>
+                    <Link to='/shop'>Shop</Link>
+                    <Link to='/'>About</Link>
+                    <Link to='/'>Contact</Link>
                 </nav>
             </div>
             <div className='flex items-center justify-center'>

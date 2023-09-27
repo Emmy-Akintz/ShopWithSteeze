@@ -1,4 +1,5 @@
 import { useGeneralAppContext } from "../../functions/useGeneralAppContext";
+import Footer from "../Footer";
 import Navbar from "../NavbarComponents/Navbar";
 import BestSellers from "./BestSellers";
 import HomeHeader from "./HomeHeader";
@@ -14,6 +15,7 @@ export default function Home() {
             <HomeHeader/>
             <BestSellers />
             <Testimonials />
+            <Footer />
         </div>
     )
 }

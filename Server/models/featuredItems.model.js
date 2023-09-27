@@ -41,6 +41,6 @@ module.exports = mongoose => {
       return object;
     });
   
-    const newItem = mongoose.model("allitems", schema);
+    const newItem = mongoose.model("featuredItems", schema);
     return newItem;
   };

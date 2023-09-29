@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default function MobileNav() {
 
-    const {showMenu, showCart, generalAppDispatch} = useGeneralAppContext()
+    const { showMenu, showCart, generalAppDispatch, showFilters } = useGeneralAppContext()
     const menuref = useRef<HTMLDivElement>(null)
     const cartref = useRef<HTMLDivElement>(null)
 
@@ -125,7 +125,7 @@ export default function MobileNav() {
                     <p>Login or Register</p>
                 </button>
             </div>
-            <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu ? 'bg-black/0' : ' bg-white '}`}>
+            <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu || showFilters ? 'bg-black/0' : ' bg-white '}`}>
                 <i 
                     className='text-[1.5rem] text-[#000000]'
                     onClick={(e)=>{

@@ -22,6 +22,16 @@ export function generalAppReducer(state: generalAppContextType, action: generalA
                 ...state,
                 showMenu: false
             }
+        case 'setShowFilters':
+            return {
+                ...state,
+                showFilters: action.payload?.showFiltersPayload ?? false
+            }
+        case 'setShowSorting':
+            return {
+                ...state,
+                showSorting: action.payload?.showSortingPayload ?? false
+            }
         default:
             return state
     }

@@ -6,6 +6,8 @@ import { generalAppContextType } from "../types/generalAppType";
 export const GeneralAppContext = createContext<generalAppContextType>({
     showCart: false,
     showMenu: false,
+    showFilters: false,
+    showSorting: false,
     generalAppDispatch: ()=>{return}
 })
 

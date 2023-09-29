@@ -1,6 +1,8 @@
 export type generalAppContextType = {
     showMenu: boolean;
     showCart: boolean;
+    showFilters: boolean;
+    showSorting: boolean;
     generalAppDispatch: React.Dispatch<generalAppActionType>
 }
 
@@ -9,6 +11,8 @@ export type generalAppActionType = {
     payload?: {
         showMenuPayload?: boolean;
         showCartPayload?: boolean;
+        showFiltersPayload?: boolean;
+        showSortingPayload?: boolean
     }
 }
 
@@ -20,4 +24,5 @@ export type itemType = {
     description?: string;
     size: string;
     image: string
+    id:string;
 }

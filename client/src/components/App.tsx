@@ -4,6 +4,7 @@ import { GeneralAppProvider } from '../contexts/generalAppContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import Shop from './ShopComponents/Shop'
 import About from './AboutComponents/About'
+import Contact from './ContactComponents/Contact'
 
 const queryClient = new QueryClient()
 
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
           </Routes>
         </GeneralAppProvider>
       </QueryClientProvider>

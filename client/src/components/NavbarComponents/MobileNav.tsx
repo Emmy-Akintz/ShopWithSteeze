@@ -104,7 +104,7 @@ export default function MobileNav() {
                                 <i><HiChevronRight /></i>
                             </div>
                         </Link>
-                        <Link to='/'>
+                        <Link to='/contact'>
                             <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-2'>
                                 <p>Contact us</p>
                                 <i><HiChevronRight /></i>

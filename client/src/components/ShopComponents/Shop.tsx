@@ -3,6 +3,7 @@ import Navbar from "../NavbarComponents/Navbar";
 import { useEffect } from "react";
 import StoreItems from "./StoreItems";
 import Footer from "../Footer";
+import ShopHeader from "./ShopHeader";
 
 export default function Shop() {
 
@@ -15,6 +16,7 @@ export default function Shop() {
     return (
         <div className={`${showCart || showMenu || showFilters ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration- flex flex-col justify-between min-h-screen`}>
             <Navbar />
+            <ShopHeader />
             <StoreItems />
             <Footer />
         </div>

@@ -13,7 +13,7 @@ export default function DesktopNav() {
                     <Link to='/'>Home</Link>
                     <Link to='/shop'>Shop</Link>
                     <Link to='/about'>About</Link>
-                    <Link to='/'>Contact</Link>
+                    <Link to='/contact'>Contact</Link>
                 </nav>
             </div>
             <div className='flex items-center justify-center'>

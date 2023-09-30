@@ -1,12 +1,11 @@
-import { useEffect } from "react";
+import Navbar from "../NavbarComponents/Navbar";
 import { useGeneralAppContext } from "../../functions/useGeneralAppContext";
 import Footer from "../Footer";
-import Testimonials from "../HomeComponents/Testimonials";
-import Navbar from "../NavbarComponents/Navbar";
-import AboutBody from "./AboutBody";
-import AboutHeader from "./AboutHeader";
+import ContactHeader from "./ContactHeader";
+import { useEffect } from "react";
+import ContactBody from "./ContactBody";
 
-export default function About() {
+export default function Contact() {
 
     const { showCart, showMenu } = useGeneralAppContext()
 
@@ -17,9 +16,8 @@ export default function About() {
     return (
         <div className={`${showCart || showMenu ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration-300`}>
             <Navbar />
-            <AboutHeader />
-            <AboutBody />
-            <Testimonials />
+            <ContactHeader />
+            <ContactBody />
             <Footer />
         </div>
     )

@@ -4,22 +4,24 @@ import { useQuery } from "react-query";
 import Loader from "../Loader";
 import { GrSort } from 'react-icons/gr'
 import { FaSortDown } from 'react-icons/fa'
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGeneralAppContext } from "../../functions/useGeneralAppContext";
+import CategoryItems from "./CategoryItems";
 
 export default function StoreItems() {
 
     const url = 'http://localhost:3000/item/storeitems/'
+    const [featuredProducts, setFeaturedProducts] = useState<itemType[]>([])
 
     async function fetchRecipes(){
         const response = await axios.get(url)
+        setFeaturedProducts(response.data)
         return response.data as itemType[]
     }
 
     const filterRef = useRef<HTMLDivElement>(null)
     const { showFilters, showSorting, generalAppDispatch } = useGeneralAppContext()
     const sortingRef = useRef<HTMLDivElement>(null)
-
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -68,11 +70,11 @@ export default function StoreItems() {
                 ref={filterRef}
                 className={`w-[250px] bg-white py-6 px-4 z-[99999] h-screen absolute transition-all duration-300 ease-in flex flex-col justify-between ${showFilters ? 'left-0 top-0' : ' left-[-250px]'}`}
             >
-                hello
+                <CategoryItems featuredProducts={featuredProducts}/>
             </div>
-            <div className="flex gap-2">
-                <div className="hidden lg:block w-[300px] bg-blue-300">
-
+            <div className="flex gap-8">
+                <div className="hidden lg:block w-[400px] px-4">
+                    <CategoryItems featuredProducts={featuredProducts}/>
                 </div>
                 <div>
                 <div className="relative flex justify-between items-center mb-6">
@@ -140,8 +142,8 @@ export default function StoreItems() {
                                             className="w-full h-full object-contain md:hover:scale-110 transition-all duration-300 ease-in"
                                         />
                                 </div>
-                                    <h3 className="text-[1.2rem] md:text-[1.4rem] text-[#808080]">{item.name}</h3>
-                                    <h4 className="text-black font-bold text-[1.3rem]"><span className="font-normal text-base">NGN </span>{item.price}</h4>
+                                    <h3 className="text-[1.1rem] md:text-[1.2rem] text-[#808080]">{item.name}</h3>
+                                    <h4 className="text-black font-bold text-[1.1rem]"><span className="font-normal text-base">NGN </span>{item.price}</h4>
                                 </div>
                             ))}
                         </div>

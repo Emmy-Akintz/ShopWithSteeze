@@ -16,7 +16,7 @@ export default function Testimonials() {
     }
 
     return (
-        <section className="px-8 md:px-10 lg:px-20 mt-[80px] bg-[url('/testimonialBackground.jpg')] bg-cover bg-center md:bg-fixed py-6 pb-10">
+        <section className="px-8 md:px-10 lg:px-20 bg-[url('/testimonialBackground.jpg')] bg-cover bg-center md:bg-fixed py-6 pb-10">
             <h2 className="text-center font-Lora text-[1.5rem] text-black/75 font-semibold">Customer Reviews</h2>
             <div className="mt-8">
                 <Slider {...settings}>

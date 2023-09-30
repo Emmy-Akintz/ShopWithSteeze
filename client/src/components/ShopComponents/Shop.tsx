@@ -7,8 +7,6 @@ import Footer from "../Footer";
 export default function Shop() {
 
     const {showCart, showMenu, showFilters} = useGeneralAppContext()
-    
-    
 
     useEffect(()=>{
         window.scrollTo(0,0)

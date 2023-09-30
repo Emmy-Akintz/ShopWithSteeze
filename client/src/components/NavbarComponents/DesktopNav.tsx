@@ -12,7 +12,7 @@ export default function DesktopNav() {
                 <nav className="flex items-center gap-4 lg:gap-10">
                     <Link to='/'>Home</Link>
                     <Link to='/shop'>Shop</Link>
-                    <Link to='/'>About</Link>
+                    <Link to='/about'>About</Link>
                     <Link to='/'>Contact</Link>
                 </nav>
             </div>

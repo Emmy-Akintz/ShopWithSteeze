@@ -18,7 +18,7 @@ export default function BestSellers() {
     const serverUrl = 'http://localhost:3000/'
 
     return (
-        <section className="px-8 md:px-10 lg:px-20 mt-[80px] flex flex-col gap-8">
+        <section className="px-8 md:px-10 lg:px-20 my-[80px] flex flex-col gap-8">
             <h2 className="text-center font-Lora text-[1.5rem]">Best Selling</h2>
             { isLoading ? <div className="flex items-center justify-center"><Loader /></div>
                 : error ? <h1 className="md:hidden flex">There was an error</h1>

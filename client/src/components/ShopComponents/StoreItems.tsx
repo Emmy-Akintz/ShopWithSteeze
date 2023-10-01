@@ -10,7 +10,7 @@ import CategoryItems from "./CategoryItems";
 import { Link } from "react-router-dom";
 
 export default function StoreItems() {
-    const url = "http://localhost:3000/item/storeitems/";
+    const url = `${import.meta.env.VITE_SERVER_URL}item/storeitems/`;
     const [featuredProducts, setFeaturedProducts] = useState<itemType[]>([]);
 
     async function fetchRecipes() {
@@ -62,7 +62,7 @@ export default function StoreItems() {
     }, [sortingRef, generalAppDispatch]);
 
     const { data, isLoading, error } = useQuery("headerItems", fetchRecipes);
-    const serverUrl = "http://localhost:3000/";
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
 
     return (
         <section className={`px-4 md:px-10 lg:px-20 py-8`}>
@@ -147,6 +147,7 @@ export default function StoreItems() {
                                     <div className="w-full h-[300px] bg-[#f4f5fd] p-8">
                                         <img
                                             src={`${serverUrl}${item.image}`}
+                                            loading="lazy"
                                             className="w-full h-full object-contain md:hover:scale-110 transition-all duration-300 ease-in"
                                         />
                                     </div>

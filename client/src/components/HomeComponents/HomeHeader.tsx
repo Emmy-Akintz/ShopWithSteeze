@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function HomeHeader() {
     
-    const url = 'http://localhost:3000/item/storeitems/'
+    const url = `${import.meta.env.VITE_SERVER_URL}item/storeitems/`
     
     async function fetchRecipes(){
         const response = await axios.get(url)
@@ -18,7 +18,7 @@ export default function HomeHeader() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const serverUrl = 'http://localhost:3000/'
+    const serverUrl = import.meta.env.VITE_SERVER_URL
 
     useEffect(() => {
        if(data){
@@ -49,6 +49,7 @@ export default function HomeHeader() {
                                 <img 
                                     src={`${serverUrl}${data.image}`}
                                     className="h-full"
+                                    loading="lazy"
                                 />
                             </div>
                         ))}

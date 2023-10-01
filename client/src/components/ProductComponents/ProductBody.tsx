@@ -2,14 +2,19 @@ import axios from "axios"
 import { itemType } from "../../types/generalAppType"
 import { useQuery } from "react-query"
 import Loader from "../Loader"
+import { useEffect } from "react"
 
 export default function ProductBody({ id }: { id: string }) {
 
-    const featuredItemsUrl = `http://localhost:3000/item/storeitems/${id}`
+    const featuredItemsUrl = `${import.meta.env.VITE_SERVER_URL}item/storeitems/${id}`
     async function fetchFeaturedItems() {
         const response = await axios.get(featuredItemsUrl)
         return response.data as itemType
     }
+
+    useEffect(() => {
+      window.scrollTo(0,0)  
+    }, [])
 
     const { data, isLoading, error } = useQuery('item', fetchFeaturedItems)
 
@@ -23,8 +28,9 @@ export default function ProductBody({ id }: { id: string }) {
                 <h1 className="md:hidden flex">There was an error</h1>
             ) : (
                 <div>
+                    <p>{data?.name}</p>
                     <img
-                        src={`http://localhost:3000/${data?.image}`}
+                        src={`${import.meta.env.VITE_SERVER_URL}${data?.image}`}
                     />
                 </div>
             )

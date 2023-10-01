@@ -74,7 +74,7 @@ export default function CategoryItems({featuredProducts}: {featuredProducts: ite
                         <Link to={`/products/${products.id}`} key={products.id} className='lg:flex items-center gap-4'>
                             <div className='max-w-[150px] bg-[#f4f5fd]'>
                                 <img 
-                                    src={`http://localhost:3000/${products.image}`}
+                                    src={`${import.meta.env.VITE_SERVER_URL}${products.image}`}
                                     className='object-fit w-full'
                                 />
                             </div>

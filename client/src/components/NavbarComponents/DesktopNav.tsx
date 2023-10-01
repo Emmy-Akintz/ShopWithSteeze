@@ -18,7 +18,7 @@ export default function DesktopNav() {
             </div>
             <div className='flex items-center justify-center'>
                 <img 
-                    src='BlackLogo.svg'
+                    src='/BlackLogo.svg'
                     className='w-[50%] flex items-center'
                 />
             </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import { itemType } from "../../types/generalAppType";
 import Loader from "../Loader";
+import { Link } from "react-router-dom";
 
 export default function HomeHeader() {
     
@@ -59,13 +60,13 @@ export default function HomeHeader() {
                     meticulously crafted to elevate your everyday look. Whether you're seeking classic elegance or bold statements,
                     we have the perfect piece to complement your unique style. Start your style journey with us today.
                 </p>
-                <div>
+                <Link to='/shop'>
                     <button 
                         className="py-3 px-12 tracking-wider border-[1px] border-black bg-black text-white md:hover:bg-white md:hover:text-black transition-all duration-200 ease-in"
                     >
                         SHOP NOW
                     </button>
-                </div>
+                </Link>
             </div>
             { isLoading ? <div className="hidden md:flex items-center justify-center"><Loader /></div>
             : error ? <h1 className="hidden md:flex">There was an error</h1>

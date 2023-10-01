@@ -138,7 +138,7 @@ export default function MobileNav() {
                     <HiOutlineBars3BottomLeft />
                 </i>
                 <img 
-                    src='BlackLogo.svg'
+                    src='/BlackLogo.svg'
                     className='w-[30%]'
                 />
                 <div className='flex items-center gap-1'>

@@ -7,6 +7,7 @@ import { FaSortDown } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { useGeneralAppContext } from "../../functions/useGeneralAppContext";
 import CategoryItems from "./CategoryItems";
+import { Link } from "react-router-dom";
 
 export default function StoreItems() {
     const url = "http://localhost:3000/item/storeitems/";
@@ -64,7 +65,7 @@ export default function StoreItems() {
     const serverUrl = "http://localhost:3000/";
 
     return (
-        <section className={`px-4 md:px-10 lg:px-20 my-8`}>
+        <section className={`px-4 md:px-10 lg:px-20 py-8`}>
             <div
                 ref={filterRef}
                 className={`w-[250px] bg-white py-6 px-4 z-[99999] h-screen absolute transition-all duration-300 ease-in flex flex-col justify-between ${showFilters ? "left-0 top-0" : " left-[-250px]"
@@ -142,7 +143,7 @@ export default function StoreItems() {
                     ) : (
                         <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4">
                             {data?.map((item) => (
-                                <div key={item.id} className="flex flex-col gap-2 justify-start">
+                                <Link to={`/products/${item.id}`} key={item.id} className="flex flex-col gap-2 justify-start">
                                     <div className="w-full h-[300px] bg-[#f4f5fd] p-8">
                                         <img
                                             src={`${serverUrl}${item.image}`}
@@ -154,7 +155,7 @@ export default function StoreItems() {
                                         <span className="font-normal text-base">NGN </span>
                                         {item.price}
                                     </h4>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     )}

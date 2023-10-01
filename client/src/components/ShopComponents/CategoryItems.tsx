@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { itemType } from '../../types/generalAppType'
+import { Link } from 'react-router-dom'
 
 export default function CategoryItems({featuredProducts}: {featuredProducts: itemType[]}){
 
@@ -70,7 +71,7 @@ export default function CategoryItems({featuredProducts}: {featuredProducts: ite
                 <div className="mt-4 flex flex-col gap-2">
                    {featuredProducts.slice(0,3).map(products=>{
                     return (
-                        <div className='lg:flex items-center gap-4'>
+                        <Link to={`/products/${products.id}`} key={products.id} className='lg:flex items-center gap-4'>
                             <div className='max-w-[150px] bg-[#f4f5fd]'>
                                 <img 
                                     src={`http://localhost:3000/${products.image}`}
@@ -81,7 +82,7 @@ export default function CategoryItems({featuredProducts}: {featuredProducts: ite
                                 <p>{products.name}</p>
                                 <p>{products.price}</p>
                             </div>
-                        </div>
+                        </Link>
                     )
                    })}
                 </div>

@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="bg-[#f4f5fd] px-8 md:px-10 lg:px-20 py-10 flex flex-col gap-20 md:grid md:grid-cols-3">
             <div className="flex flex-col gap-4 text-black/75">
                 <img 
-                    src="BlackLogo.svg"
+                    src="/BlackLogo.svg"
                     className="max-w-[150px] mb-6"
                 />
                 <p> Elevate your Steeze and make a statement with our handcrafted pieces. Explore the world of refined craftsmanship and sophistication. Your journey to timeless elegance begins here.</p>

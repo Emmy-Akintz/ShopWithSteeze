@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './HomeComponents/Home'
-import { GeneralAppProvider } from '../contexts/generalAppContext'
+import { GeneralAppProvider } from '../contexts/GeneralAppContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import Shop from './ShopComponents/Shop'
 import About from './AboutComponents/About'

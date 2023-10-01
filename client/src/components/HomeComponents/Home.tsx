@@ -4,11 +4,16 @@ import Navbar from "../NavbarComponents/Navbar";
 import BestSellers from "./BestSellers";
 import HomeHeader from "./HomeHeader";
 import Testimonials from "./Testimonials";
+import { useEffect } from 'react'
 
 export default function Home() {
 
     const {showCart, showMenu} = useGeneralAppContext()
 
+    useEffect(() => {
+       window.scrollTo(0,0) 
+    }, [])
+    
     return (
         <div className={`${showCart || showMenu ? 'darkBackground' : ''} transition-all duration-300`}>
             <Navbar />

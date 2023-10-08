@@ -64,4 +64,4 @@ If you want to run this application locally, follow the [Getting Started](#getti
 
 ## Contributing
 
-We welcome contributions from the open-source community.
+We welcome contributions from the open-source community

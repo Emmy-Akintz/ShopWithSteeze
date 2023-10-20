@@ -14,12 +14,12 @@ export default function HomeHeader() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => {
-                return (prevIndex + 1) % 3
+                return (prevIndex + 1) % displayRings.length
             });
         }, 4000);
 
         return () => clearInterval(interval);
-    }, [currentIndex]);
+    }, [currentIndex, displayRings.length]);
 
 
 

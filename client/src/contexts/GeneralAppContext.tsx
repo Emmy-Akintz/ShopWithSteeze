@@ -8,7 +8,9 @@ export const GeneralAppContext = createContext<generalAppContextType>({
     showMenu: false,
     showFilters: false,
     showSorting: false,
-    generalAppDispatch: ()=>{return}
+    generalAppDispatch: () => { return },
+    showLogin: false,
+    showSignup: false
 })
 
 export function GeneralAppProvider({children}: {children: ReactNode}){

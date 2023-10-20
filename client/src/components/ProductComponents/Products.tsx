@@ -6,12 +6,12 @@ import ProductBody from "./ProductBody";
 
 export default function Products() {
 
-    const { showCart, showMenu } = useGeneralAppContext()
+    const { showCart, showMenu, showLogin, showSignup } = useGeneralAppContext()
 
     const { id } = useParams()
 
     return (
-        <div className={`${showCart || showMenu ? 'darkBackground' : ''} transition-all duration-300`}>
+        <div className={`${showCart || showMenu || showLogin || showSignup ? 'darkBackground' : ''} transition-all duration-300`}>
             <Navbar />
             {id && <ProductBody id={id} />}
             <Footer />

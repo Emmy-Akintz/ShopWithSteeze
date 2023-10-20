@@ -32,6 +32,16 @@ export function generalAppReducer(state: generalAppContextType, action: generalA
                 ...state,
                 showSorting: action.payload?.showSortingPayload ?? false
             }
+        case 'setShowLogin':
+            return {
+                ...state,
+                showLogin: action.payload?.showLoginPayload ?? false
+            }
+        case 'setShowSignup':
+            return {
+                ...state,
+                showSignup: action.payload?.showSignupPayload ?? false
+            }
         default:
             return state
     }

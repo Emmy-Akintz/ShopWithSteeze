@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default function MobileNav() {
 
-    const { showMenu, showCart, generalAppDispatch, showFilters } = useGeneralAppContext()
+    const { showMenu, showCart, generalAppDispatch, showFilters, showLogin, showSignup } = useGeneralAppContext()
     const menuref = useRef<HTMLDivElement>(null)
     const cartref = useRef<HTMLDivElement>(null)
 
@@ -67,6 +67,18 @@ export default function MobileNav() {
         })
     }
 
+    function openAuth() {
+        generalAppDispatch({
+            type: 'closeMenu'
+        })
+        generalAppDispatch({
+            type: 'setShowLogin',
+            payload: {
+                showLoginPayload: true
+            }
+        })
+    }
+
     return (
         <div className={`flex relative`}>
             <div 
@@ -120,12 +132,13 @@ export default function MobileNav() {
                 </div>
                 <button 
                     className='flex items-center gap-3 p-2 border-[1px] border-[#808080] justify-center'
+                    onClick={openAuth}
                 >
                     <i><HiOutlineUser /></i>
                     <p>Login or Register</p>
                 </button>
             </div>
-            <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu || showFilters ? 'bg-black/0' : ' bg-white '}`}>
+            <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu || showFilters || showLogin || showSignup ? 'bg-black/0' : ' bg-white '}`}>
                 <i 
                     className='text-[1.5rem] text-[#000000]'
                     onClick={(e)=>{

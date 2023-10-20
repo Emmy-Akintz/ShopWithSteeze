@@ -7,14 +7,14 @@ import ShopHeader from "./ShopHeader";
 
 export default function Shop() {
 
-    const {showCart, showMenu, showFilters} = useGeneralAppContext()
+    const { showCart, showMenu, showFilters, showLogin, showSignup } = useGeneralAppContext()
 
-    useEffect(()=>{
-        window.scrollTo(0,0)
-    },[])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
-        <div className={`${showCart || showMenu || showFilters ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration- flex flex-col justify-between min-h-screen`}>
+        <div className={`${showCart || showMenu || showFilters || showLogin || showSignup ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration- flex flex-col justify-between min-h-screen`}>
             <Navbar />
             <ShopHeader />
             <StoreItems />

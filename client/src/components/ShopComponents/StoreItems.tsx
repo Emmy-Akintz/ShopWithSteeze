@@ -77,8 +77,8 @@ export default function StoreItems() {
                 <div className="hidden lg:block w-[400px] px-4">
                     <CategoryItems featuredProducts={featuredProducts} />
                 </div>
-                <div>
-                    <div className="relative flex justify-between items-center mb-6">
+                <div className='w-full'>
+                    <div className="relative flex justify-between items-center mb-6 w-full">
                         <i
                             onClick={(e) => {
                                 e.stopPropagation();

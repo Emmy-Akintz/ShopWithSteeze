@@ -3,7 +3,9 @@ export type generalAppContextType = {
     showCart: boolean;
     showFilters: boolean;
     showSorting: boolean;
-    generalAppDispatch: React.Dispatch<generalAppActionType>
+    generalAppDispatch: React.Dispatch<generalAppActionType>;
+    showSignup: boolean;
+    showLogin: boolean;
 }
 
 export type generalAppActionType = {
@@ -12,7 +14,9 @@ export type generalAppActionType = {
         showMenuPayload?: boolean;
         showCartPayload?: boolean;
         showFiltersPayload?: boolean;
-        showSortingPayload?: boolean
+        showSortingPayload?: boolean;
+        showLoginPayload?: boolean;
+        showSignupPayload?: boolean;
     }
 }
 

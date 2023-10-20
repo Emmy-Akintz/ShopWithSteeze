@@ -8,14 +8,14 @@ import { useEffect } from 'react'
 
 export default function Home() {
 
-    const {showCart, showMenu} = useGeneralAppContext()
+    const {showCart, showMenu, showLogin, showSignup} = useGeneralAppContext()
 
     useEffect(() => {
        window.scrollTo(0,0) 
     }, [])
     
     return (
-        <div className={`${showCart || showMenu ? 'darkBackground' : ''} transition-all duration-300`}>
+        <div className={`${showCart || showMenu || showLogin || showSignup ? 'darkBackground' : ''} transition-all duration-300`}>
             <Navbar />
             <HomeHeader/>
             <BestSellers />

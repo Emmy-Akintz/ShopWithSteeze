@@ -33,7 +33,9 @@ export default function ProductBody({ id }: { id: string }) {
                 }
             })
         } else {
-            return
+            generalAppDispatch({
+                type: 'openCart'
+            })
         }
     }
 

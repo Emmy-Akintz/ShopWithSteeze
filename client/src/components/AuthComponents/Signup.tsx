@@ -130,7 +130,7 @@ export default function Signup() {
                     }}
                 />
                 <div className='flex flex-col gap-6 md:gap-4'>
-                    <button type='submit' className='w-full p-4 text-white bg-black  transition-all duration-200 ease-in hover:bg-[#00000089] tracking-widerflex items-center justify-center'>
+                    <button type='submit' className='w-full p-4 text-white bg-black  transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider flex items-center justify-center'>
                         {loading ? <MiniLoader /> : 'REGISTER'}
                     </button>
                     <button type='button' onClick={goToSignIn} className='w-full p-4 text-white bg-[#27262659] transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider'>ALREADY HAS AN ACCOUNT</button>

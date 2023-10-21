@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export type generalAppContextType = {
     showMenu: boolean;
     showCart: boolean;
@@ -6,6 +8,7 @@ export type generalAppContextType = {
     generalAppDispatch: React.Dispatch<generalAppActionType>;
     showSignup: boolean;
     showLogin: boolean;
+    currentUser: User | null
 }
 
 export type generalAppActionType = {
@@ -17,6 +20,7 @@ export type generalAppActionType = {
         showSortingPayload?: boolean;
         showLoginPayload?: boolean;
         showSignupPayload?: boolean;
+        currentUserPayload?: User | null
     }
 }
 

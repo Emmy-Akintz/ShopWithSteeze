@@ -5,6 +5,7 @@ import Loader from "../Loader"
 import { useEffect } from "react"
 import { BsStar, BsHeart, BsPlus } from 'react-icons/bs'
 import { AiOutlineMinus } from 'react-icons/ai'
+import { useGeneralAppContext } from "../../functions/useGeneralAppContext"
 
 export default function ProductBody({ id }: { id: string }) {
 
@@ -14,6 +15,8 @@ export default function ProductBody({ id }: { id: string }) {
         return response.data as itemType
     }
 
+    const { currentUser, generalAppDispatch } = useGeneralAppContext()
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -22,6 +25,16 @@ export default function ProductBody({ id }: { id: string }) {
 
     function addToCart(objectId: string) {
         console.log(objectId)
+        if (currentUser === null) {
+            generalAppDispatch({
+                type: 'setShowLogin',
+                payload: {
+                    showLoginPayload: true
+                }
+            })
+        } else {
+            return
+        }
     }
 
     return (

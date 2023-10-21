@@ -42,6 +42,17 @@ export function generalAppReducer(state: generalAppContextType, action: generalA
                 ...state,
                 showSignup: action.payload?.showSignupPayload ?? false
             }
+        case 'closeAuthPages':
+            return {
+                ...state,
+                showSignup: false,
+                showLogin: false
+            }
+        case 'setCurrentUser':
+            return {
+                ...state,
+                currentUser: action.payload?.currentUserPayload ?? null 
+            }
         default:
             return state
     }

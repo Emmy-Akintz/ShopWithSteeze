@@ -105,6 +105,7 @@ export default function Signup() {
                     type='email'
                     className='w-full bg-transparent p-4 border-[1px] border-[#808080] outline-none'
                     placeholder='Email'
+                    value={authDetails.email}
                     required
                     onChange={(e) => {
                         setAuthDetails(prevDetails => {
@@ -119,6 +120,7 @@ export default function Signup() {
                     type='password'
                     className='w-full bg-transparent p-4 border-[1px] border-[#808080] outline-none'
                     placeholder='Password'
+                    value={authDetails.password}
                     required
                     onChange={(e) => {
                         setAuthDetails(prevDetails => {

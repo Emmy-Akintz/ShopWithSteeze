@@ -8,6 +8,7 @@ export type generalAppContextType = {
     generalAppDispatch: React.Dispatch<generalAppActionType>;
     showSignup: boolean;
     showLogin: boolean;
+    showAccount: boolean;
     currentUser: User | null
 }
 
@@ -20,6 +21,7 @@ export type generalAppActionType = {
         showSortingPayload?: boolean;
         showLoginPayload?: boolean;
         showSignupPayload?: boolean;
+        showAccountPayload?: boolean;
         currentUserPayload?: User | null
     }
 }

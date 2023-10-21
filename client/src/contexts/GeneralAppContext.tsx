@@ -13,7 +13,8 @@ export const GeneralAppContext = createContext<generalAppContextType>({
     generalAppDispatch: () => { return },
     showLogin: false,
     showSignup: false,
-    currentUser: null
+    currentUser: null,
+    showAccount: false
 })
 
 export function GeneralAppProvider({children}: {children: ReactNode}){

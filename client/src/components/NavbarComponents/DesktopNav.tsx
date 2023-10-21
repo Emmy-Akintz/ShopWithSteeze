@@ -6,9 +6,9 @@ import { LiaTimesSolid } from 'react-icons/lia'
 
 export default function DesktopNav() {
 
-    const { showFilters } = useGeneralAppContext()
+    const { showFilters, currentUser } = useGeneralAppContext()
     const cartref = useRef<HTMLDivElement | null>(null)
-    const { generalAppDispatch, showCart, showLogin, showSignup } = useGeneralAppContext()
+    const { generalAppDispatch, showCart, showLogin, showSignup, showAccount } = useGeneralAppContext()
 
     function closeCart() {
         generalAppDispatch({
@@ -23,17 +23,26 @@ export default function DesktopNav() {
     }
 
     function openAuth() {
-        generalAppDispatch({
-            type: 'setShowLogin',
-            payload: {
-                showLoginPayload: true
-            }
-        })
+        if (currentUser) {
+            generalAppDispatch({
+                type: 'setShowAccount',
+                payload: {
+                    showAccountPayload: true
+                }
+            })
+        } else {
+            generalAppDispatch({
+                type: 'setShowLogin',
+                payload: {
+                    showLoginPayload: true
+                }
+            })
+        }
     }
 
 
     return (
-        <div className={`z-[999] ${showFilters || showCart || showLogin || showSignup ? 'bg-black/0' : 'bg-white'} py-4 px-10 lg:px-20 grid grid-cols-3 place-content-center shadow-md`}>
+        <div className={`z-[999] ${showFilters || showCart || showLogin || showSignup || showAccount ? 'bg-black/0' : 'bg-white'} py-4 px-10 lg:px-20 grid grid-cols-3 place-content-center shadow-md`}>
             <div className='flex items-center justify-start'>
                 <nav className="flex items-center gap-4 lg:gap-10">
                     <Link to='/'>Home</Link>

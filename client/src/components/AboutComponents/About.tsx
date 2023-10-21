@@ -8,14 +8,14 @@ import AboutHeader from "./AboutHeader";
 
 export default function About() {
 
-    const { showCart, showMenu } = useGeneralAppContext()
+    const { showCart, showMenu, showLogin, showSignup, showAccount } = useGeneralAppContext()
 
     useEffect(()=>{
         window.scrollTo(0,0)
     },[])
 
     return (
-        <div className={`${showCart || showMenu ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration-300`}>
+        <div className={`${showCart || showMenu || showLogin || showSignup || showAccount ? 'darkBackground h-screen overflow-y-hidden' : ''} transition-all duration-300`}>
             <Navbar />
             <AboutHeader />
             <AboutBody />

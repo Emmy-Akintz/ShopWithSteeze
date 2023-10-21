@@ -8,15 +8,16 @@ import Products from './ProductComponents/Products'
 import Login from './AuthComponents/Login'
 import Signup from './AuthComponents/Signup'
 import { useGeneralAppContext } from '../functions/useGeneralAppContext'
+import Account from './AuthComponents/Account'
 
 const queryClient = new QueryClient()
 
 function App() {
 
-  const { showSignup, showLogin } = useGeneralAppContext()
+  const { showSignup, showLogin, showAccount } = useGeneralAppContext()
 
   return (
-    <div className={`font-Urbanist relative ${showSignup || showLogin ? 'max-h-screen overflow-y-hidden' : ''}`}>
+    <div className={`font-Urbanist relative ${showSignup || showLogin || showAccount ? 'max-h-screen overflow-y-hidden' : ''}`}>
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -25,9 +26,10 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/products/:id' element={<Products />} />
         </Routes>
-        <div className={`${showSignup || showLogin ? 'h-screen absolute top-0 flex items-center justify-center w-full' : ''}`}>
+        <div className={`${showSignup || showLogin || showAccount ? 'h-screen absolute top-0 flex items-center justify-center w-full' : ''}`}>
           <Login />
           <Signup />
+          <Account />
         </div>
       </QueryClientProvider>
     </div>

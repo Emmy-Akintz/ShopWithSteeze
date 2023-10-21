@@ -29,7 +29,7 @@ export default function Login() {
             email: '',
             password: ''
         })
-    }, [])
+    }, [showLogin])
 
     function closeAuthPage() {
         generalAppDispatch({
@@ -39,8 +39,6 @@ export default function Login() {
             }
         })
     }
-
-    console.log(authDetails)
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -82,6 +80,10 @@ export default function Login() {
 
             } catch (error) {
                 console.log(error)
+                setErrorMessage({
+                    type: 'Error',
+                    message: 'Invalid credentials'
+                })
             } finally {
                 setLoading(false)
             }
@@ -108,21 +110,25 @@ export default function Login() {
         const { email } = authDetails
 
         setLoading(true)
-        await sendPasswordResetEmail(auth, email).
-            then(() => {
-                setErrorMessage({
-                    type: 'Email sent',
-                    message: 'Reset email sent'
-                })
-            }).catch((error) => {
-                console.error(error)
-                setErrorMessage({
-                    type: 'Error',
-                    message: 'Error sending email'
-                })
-            }).finally(() => {
-                setLoading(false)
+        setErrorMessage({
+            type: '',
+            message: ''
+        })
+        try {
+            await sendPasswordResetEmail(auth, email)
+            setErrorMessage({
+                type: 'Email sent',
+                message: 'Reset Email Sent'
             })
+        } catch (error) {
+            console.error(error)
+            setErrorMessage({
+                type: 'Error',
+                message: 'Error Sending Email'
+            })
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -145,6 +151,7 @@ export default function Login() {
                         type='email'
                         className='w-full bg-transparent p-4 border-[1px] border-[#808080] outline-none'
                         placeholder='Email*'
+                        value={authDetails.email}
                         required
                         onChange={(e) => {
                             setAuthDetails(prevDetails => {
@@ -153,20 +160,39 @@ export default function Login() {
                                     email: e.target.value
                                 }
                             })
+
+                            setErrorMessage({
+                                type: '',
+                                message: ''
+                            })
                         }}
                     />
                     <div className='flex flex-col gap-6 md:gap-4'>
                         <button type='submit' className='w-full p-4 text-white bg-black  transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider flex items-center justify-center'>
                             {loading ? <MiniLoader /> : 'SEND EMAIL'}
                         </button>
-                        <button type='button' onClick={() => setShowForgotPassword(false)} className='w-full p-4 text-white bg-[#27262659] transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider'>SIGN IN</button>
+                        <button
+                            type='button'
+                            onClick={() => {
+                                setShowForgotPassword(false)
+                                setErrorMessage({
+                                    type: '',
+                                    message: ''
+                                })
+                            }}
+                            className='w-full p-4 text-white bg-[#27262659] transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider'
+                        >
+                            SIGN IN</button>
                     </div>
+
+                    <p className={`${errorMessage.message === '' ? 'hidden' : errorMessage.type === 'Error' ? 'bg-red-500 p-3 tracking-wide text-white' : errorMessage.type === 'Email sent' ? 'bg-green-500 p-3 tracking-wide text-white' : ''}`}>{errorMessage.message}</p>
                 </form> :
                 <form className='mt-6 flex flex-col gap-6 md:gap-4' onSubmit={handleSubmit}>
                     <input
                         type='email'
                         className='w-full bg-transparent p-4 border-[1px] border-[#808080] outline-none'
                         placeholder='Email*'
+                        value={authDetails.email}
                         required
                         onChange={(e) => {
                             setAuthDetails(prevDetails => {
@@ -181,6 +207,7 @@ export default function Login() {
                         type='password'
                         className='w-full bg-transparent p-4 border-[1px] border-[#808080] outline-none'
                         placeholder='Password*'
+                        value={authDetails.password}
                         required
                         onChange={(e) => {
                             setAuthDetails(prevDetails => {
@@ -189,18 +216,34 @@ export default function Login() {
                                     password: e.target.value
                                 }
                             })
+
+                            setErrorMessage({
+                                type: '',
+                                message: ''
+                            })
                         }}
                     />
-                    <p onClick={() => setShowForgotPassword(true)} className='text-end underline'>Forgot Password?</p>
+                    <p
+                        onClick={() => {
+                            setShowForgotPassword(true)
+                            setErrorMessage({
+                                type: '',
+                                message: ''
+                            })
+                        }}
+                        className='text-end underline'
+                    >
+                        Forgot Password?
+                    </p>
                     <div className='flex flex-col gap-6 md:gap-4'>
                         <button type='submit' className='w-full p-4 text-white bg-black  transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider flex items-center justify-center'>
                             {loading ? <MiniLoader /> : 'SIGN IN'}
                         </button>
                         <button type='button' onClick={goToRegister} className='w-full p-4 text-white bg-[#27262659] transition-all duration-200 ease-in hover:bg-[#00000089] tracking-wider'>CREATE ACCOUNT</button>
                     </div>
+                    <p className={`${errorMessage.message === '' ? 'hidden' : errorMessage.type === 'Error' ? 'bg-red-500 p-3 tracking-wide text-white' : errorMessage.type === 'Email sent' ? 'bg-green-500 p-3 tracking-wide text-white' : ''}`}>{errorMessage.message}</p>
                 </form>
             }
-            <p className={`${errorMessage.message === '' ? 'hidden' : errorMessage.type === 'error' ? '' : errorMessage.type === 'Email sent' ? '' : ''}`}>{errorMessage.message}</p>
         </div>
     )
 }

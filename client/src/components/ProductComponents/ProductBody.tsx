@@ -1,8 +1,8 @@
 import axios from "axios"
 import { itemType } from "../../types/generalAppType"
-import { useQuery } from "react-query"
+import { useQuery, useQueryClient } from "react-query"
 import Loader from "../Loader"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { BsStar, BsHeart, BsPlus } from 'react-icons/bs'
 import { AiOutlineMinus } from 'react-icons/ai'
 import { useGeneralAppContext } from "../../functions/useGeneralAppContext"
@@ -15,7 +15,11 @@ export default function ProductBody({ id }: { id: string }) {
         return response.data as itemType
     }
 
+    const queryClient = useQueryClient();
+
     const { currentUser, generalAppDispatch } = useGeneralAppContext()
+
+    const [quantity, setQuantity] = useState(1)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -23,8 +27,7 @@ export default function ProductBody({ id }: { id: string }) {
 
     const { data, isLoading, error } = useQuery('item', fetchFeaturedItems)
 
-    function addToCart(objectId: string) {
-        console.log(objectId)
+    async function addToCart() {
         if (currentUser === null) {
             generalAppDispatch({
                 type: 'setShowLogin',
@@ -33,9 +36,19 @@ export default function ProductBody({ id }: { id: string }) {
                 }
             })
         } else {
-            generalAppDispatch({
-                type: 'openCart'
-            })
+            try {
+                await axios.post(`${import.meta.env.VITE_SERVER_URL}cart/createCartItem/${currentUser.uid}`, {
+                    ...data,
+                    amount: quantity
+                })
+
+                generalAppDispatch({
+                    type: 'openCart'
+                })
+                queryClient.refetchQueries('cart')
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -77,13 +90,34 @@ export default function ProductBody({ id }: { id: string }) {
                                 <div className="flex flex-col gap-3 mt-2">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex items-center flex-[0.5] py-3 px-3 justify-between border-black text-[1.1rem] font-semibold border-[1px]">
-                                            <i><AiOutlineMinus /></i>
-                                            <p className="">{`1`}</p>
-                                            <i><BsPlus /></i>
+                                            <i
+                                                onClick={() => {
+                                                    setQuantity(prevQuantity => {
+                                                        if (prevQuantity - 1 === 0) {
+                                                            return 1
+                                                        } else {
+
+                                                            return prevQuantity = prevQuantity - 1
+                                                        }
+                                                    })
+                                                }}
+                                            >
+                                                <AiOutlineMinus />
+                                            </i>
+                                            <p className="">{quantity}</p>
+                                            <i
+                                                onClick={() => {
+                                                    setQuantity(prevQuantity => {
+                                                        return prevQuantity = prevQuantity + 1
+                                                    })
+                                                }}
+                                            >
+                                                <BsPlus />
+                                            </i>
                                         </div>
                                         <div className="flex-1 flex gap-3">
                                             <button
-                                                onClick={() => addToCart(data?.name || '')}
+                                                onClick={() => addToCart()}
                                                 className="bg-black flex-[0.75] w-full text-white font-semibold text-[1.1rem] py-3 border-black border-[1px] md:hover:text-black md:hover:bg-white transition-all duration-300 ease-in cursor-pointer"
                                             >
                                                 ADD TO CART

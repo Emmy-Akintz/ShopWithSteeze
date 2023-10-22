@@ -2,19 +2,14 @@ import { HiOutlineShoppingCart, HiOutlineUser, HiOutlineHeart } from 'react-icon
 import { Link } from 'react-router-dom'
 import { useGeneralAppContext } from '../../functions/useGeneralAppContext'
 import { useRef } from 'react'
-import { LiaTimesSolid } from 'react-icons/lia'
+import CartUI from '../ShopComponents/CartUI'
+import { cartType } from '../../types/generalAppType'
 
-export default function DesktopNav() {
+export default function DesktopNav({ cartItems }: { cartItems: cartType[] | undefined }) {
 
     const { showFilters, currentUser } = useGeneralAppContext()
     const cartref = useRef<HTMLDivElement | null>(null)
     const { generalAppDispatch, showCart, showLogin, showSignup, showAccount } = useGeneralAppContext()
-
-    function closeCart() {
-        generalAppDispatch({
-            type: 'closeCart'
-        })
-    }
 
     function openCart() {
         generalAppDispatch({
@@ -62,28 +57,14 @@ export default function DesktopNav() {
                 <i onClick={openAuth} className='cursor-pointer'><HiOutlineUser /></i>
                 <div className='flex items-center cursor-pointer' onClick={openCart}>
                     <i><HiOutlineShoppingCart /></i>
-                    <span className='text-base'>(0)</span>
+                    <span className='text-base'>{`(${cartItems?.length})`}</span>
                 </div>
             </div>
             <div
-                className={`w-[350px] bg-white py-6 px-4  h-screen absolute top-0 transition-all duration-200 ease-in ${showCart ? 'right-0 opacity-100' : 'left-[-280px] opacity-0'}`}
+                className={`w-[400px] bg-white py-6 scrollbarHidden px-4 h-screen absolute top-0 transition-all duration-200 ease-in ${showCart ? 'right-0 opacity-100  overflow-y-scroll' : 'left-[-280px] opacity-0'}`}
                 ref={cartref}
             >
-                <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-4'>
-                    <p>{`Cart(0)`}</p>
-                    <button
-                        className='bg-white p-2 rounded-full shadow-lg text-[1.2rem]'
-                        onClick={(e) => {
-                            e.stopPropagation;
-                            closeCart()
-                        }}
-                    >
-                        <LiaTimesSolid />
-                    </button>
-                </div>
-                <div className='mt-6'>
-                    <p className='text-center'>No products in the cart</p>
-                </div>
+                <CartUI />
             </div>
         </div>
     )

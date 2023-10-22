@@ -144,7 +144,7 @@ export default function StoreItems() {
                         <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4">
                             {data?.map((item) => (
                                 <Link to={`/products/${item.id}`} key={item.id} className="flex flex-col gap-2 justify-start">
-                                    <div className="w-full h-[300px] bg-[#f4f5fd] p-8">
+                                    <div className="w-full h-[250px] md:h-[300px] bg-[#f4f5fd] p-8">
                                         <img
                                             src={`${serverUrl}${item.image}`}
                                             loading="lazy"

@@ -1,10 +1,12 @@
 import { HiOutlineShoppingCart, HiOutlineBars3BottomLeft, HiOutlineUser, HiChevronRight } from 'react-icons/hi2'
-import { LiaTimesSolid } from 'react-icons/lia'
 import { useRef, useEffect } from 'react'
 import { useGeneralAppContext } from '../../functions/useGeneralAppContext'
 import { Link } from 'react-router-dom'
+import { LiaTimesSolid } from 'react-icons/lia'
+import CartUI from '../ShopComponents/CartUI'
+import { cartType } from '../../types/generalAppType'
 
-export default function MobileNav() {
+export default function MobileNav({cartItems}: {cartItems: cartType[] | undefined}) {
 
     const { showMenu, showCart, generalAppDispatch, showFilters, showLogin, showSignup, showAccount, currentUser } = useGeneralAppContext()
     const menuref = useRef<HTMLDivElement>(null)
@@ -60,13 +62,6 @@ export default function MobileNav() {
         })
     }
 
-
-    function closeCart() {
-        generalAppDispatch({
-            type: 'closeCart'
-        })
-    }
-
     function openAuth() {
         generalAppDispatch({
             type: 'closeMenu'
@@ -103,7 +98,7 @@ export default function MobileNav() {
                                 closeMenu()
                             }}
                         >
-                            <LiaTimesSolid />
+                            <LiaTimesSolid />a
                         </button>
                     </div>
                     <nav className='flex flex-col gap-6'>
@@ -144,7 +139,7 @@ export default function MobileNav() {
                     onClick={openAuth}
                 >
                     <i><HiOutlineUser /></i>
-                    <p>{ currentUser ? currentUser.email : 'Login or Register' }</p>
+                    <p>{currentUser ? currentUser.email : 'Login or Register'}</p>
                 </button>
             </div>
             <div className={`flex justify-between items-center p-4 w-full shadow-md ${showCart || showMenu || showFilters || showLogin || showSignup || showAccount ? 'bg-black/0' : ' bg-white '}`}>
@@ -175,28 +170,15 @@ export default function MobileNav() {
                     >
                         <HiOutlineShoppingCart />
                     </i>
-                    <p className='text-base'>(0)</p>
+                    <p className='text-base'>{`(${cartItems?.length})`}</p>
                 </div>
             </div>
             <div
-                className={`w-[280px] bg-white py-6 px-4  h-screen absolute transition-all duration-200 ease-in ${showCart ? 'right-0 opacity-100' : 'left-[-280px] opacity-0'}`}
+                className={`w-[280px] bg-white py-6 px-4  h-screen absolute transition-all duration-200 ease-in scrollbarHidden overflow-y-scroll ${showCart ? 'right-0 opacity-100' : 'left-[-280px] opacity-0'}`}
                 ref={cartref}
             >
-                <div className='flex items-center justify-between border-b-[1px] border-[#808080] py-4'>
-                    <p>{`Cart(0)`}</p>
-                    <button
-                        className='bg-white p-2 rounded-full shadow-lg text-[1.2rem]'
-                        onClick={(e) => {
-                            e.stopPropagation;
-                            closeCart()
-                        }}
-                    >
-                        <LiaTimesSolid />
-                    </button>
-                </div>
-                <div className='mt-6'>
-                    <p className='text-center'>No products in the cart</p>
-                </div>
+
+                <CartUI />
             </div>
         </div>
     )

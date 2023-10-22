@@ -16,7 +16,6 @@ exports.findAll = (req, res) => {
 // Find a single User with an id
 exports.findOne = async (req, res) => {
   const firebaseUser = req.user;
-  console.log(firebaseUser); // Debugging line
 
   // Check if the user already exists in MongoDB
   try {

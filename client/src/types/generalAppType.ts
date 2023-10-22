@@ -26,7 +26,7 @@ export type generalAppActionType = {
     }
 }
 
-export type itemType = {
+export interface itemType  {
     name: string;
     price: number;
     category: string;
@@ -35,4 +35,9 @@ export type itemType = {
     size: string;
     image: string
     id:string;
+}
+
+export interface cartType extends itemType {
+    firebaseUid: string;
+    amount: number
 }

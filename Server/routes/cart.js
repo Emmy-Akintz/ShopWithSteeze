@@ -7,6 +7,8 @@ router.post("/createCartItem/:firebaseUid", cart.create);
 
 router.get("/getCartItems/:firebaseUid", cart.findAll);
 
-router.delete("/deleteItem/:itemId", cart.deleteOne)
+router.delete("/deleteItem/:itemId", cart.deleteOne);
+
+router.delete("/clearCart/:firebaseUid", cart.deleteAll);
 
 module.exports = router;

@@ -82,3 +82,23 @@ exports.deleteOne = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+exports.deleteAll = async (req, res) => {
+  try {
+    const { firebaseUid } = req.params;
+
+    // Use the Mongoose model to delete all items with the specified firebaseUid
+    const deleteResult = await Item.deleteMany({ firebaseUid });
+
+    // Check if any items were deleted
+    if (deleteResult.deletedCount === 0) {
+      return res.status(404).json({ message: "No items found for deletion" });
+    }
+
+    // Return a success message as JSON response
+    res.json({ message: "All items deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};

@@ -38,10 +38,20 @@ export default function CartUI() {
     async function deleteCartItem(itemId: string) {
         setLoading(true)
         try {
-            const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}cart/deleteItem/${itemId}`)
-            // return response.data as cartType[]
-            console.log(response.data)
-            queryClient.invalidateQueries('cart');
+            await axios.delete(`${import.meta.env.VITE_SERVER_URL}cart/deleteItem/${itemId}`)
+            await queryClient.invalidateQueries('cart');
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    async function clearCart() {
+        setLoading(true)
+        try {
+            await axios.delete(`${import.meta.env.VITE_SERVER_URL}cart/clearCart/${currentUser?.uid}`)
+            await queryClient.invalidateQueries('cart');
         } catch (error) {
             console.error(error)
         } finally {
@@ -50,8 +60,6 @@ export default function CartUI() {
     }
 
     const { data, error } = useQuery('cart', fetchcartItems)
-
-    console.log(data)
 
     return (
         <div className='flex flex-col h-full'>
@@ -103,8 +111,17 @@ export default function CartUI() {
                             </div>
             }
             <div className='flex flex-col w-full gap-4 mt-4 '>
-                <button className="w-full border-orange-500 border-[1px] text-orange-500 hover:text-white hover:bg-orange-500 py-3 font-semibold tracking-wide transition-all duration-300 ease-in">BUY NOW</button>
-                <button className="bg-black flex-[0.75] w-full text-white font-semibold text-[1.1rem] py-3 border-black border-[1px] md:hover:text-black md:hover:bg-white transition-all duration-300 ease-in cursor-pointer">CLEAR CART</button>
+                <button
+                    className="w-full border-orange-500 border-[1px] text-orange-500 hover:text-white hover:bg-orange-500 py-3 font-semibold tracking-wide transition-all duration-300 ease-in"
+                >
+                    BUY NOW
+                </button>
+                <button
+                    onClick={clearCart}
+                    className="bg-black flex-[0.75] w-full text-white font-semibold text-[1.1rem] py-3 border-black border-[1px] md:hover:text-black md:hover:bg-white transition-all duration-300 ease-in cursor-pointer"
+                >
+                    CLEAR CART
+                </button>
             </div>
         </div>
     )

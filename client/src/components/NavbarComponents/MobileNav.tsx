@@ -98,7 +98,7 @@ export default function MobileNav({cartItems}: {cartItems: cartType[] | undefine
                                 closeMenu()
                             }}
                         >
-                            <LiaTimesSolid />a
+                            <LiaTimesSolid />
                         </button>
                     </div>
                     <nav className='flex flex-col gap-6'>

@@ -62,3 +62,23 @@ exports.findOne = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+exports.deleteOne = async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+
+    // Use the Mongoose model to find and delete one item by _id
+    const deletedItem = await Item.findOneAndDelete({ _id: itemId });
+
+    // Check if the item exists
+    if (!deletedItem) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    // Return a success message as JSON response
+    res.json({ message: "Item deleted successfully", deletedItem });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};

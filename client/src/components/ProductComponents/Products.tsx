@@ -11,7 +11,7 @@ export default function Products() {
     const { id } = useParams()
 
     return (
-        <div className={`${showCart || showMenu || showLogin || showSignup || showAccount ? 'darkBackground' : ''} transition-all duration-300`}>
+        <div className={`${showCart || showMenu || showLogin || showSignup || showAccount ? 'darkBackground' : ''} transition-all duration-300 flex flex-col min-h-screen`}>
             <Navbar />
             {id && <ProductBody id={id} />}
             <Footer />

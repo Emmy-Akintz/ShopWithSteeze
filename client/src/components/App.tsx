@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './HomeComponents/Home'
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClientProvider } from 'react-query'
 import Shop from './ShopComponents/Shop'
 import About from './AboutComponents/About'
 import Contact from './ContactComponents/Contact'
@@ -9,8 +9,8 @@ import Login from './AuthComponents/Login'
 import Signup from './AuthComponents/Signup'
 import { useGeneralAppContext } from '../functions/useGeneralAppContext'
 import Account from './AuthComponents/Account'
+import queryClient from './queryClient'
 
-const queryClient = new QueryClient()
 
 function App() {
 

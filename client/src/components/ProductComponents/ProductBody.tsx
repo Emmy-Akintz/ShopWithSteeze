@@ -9,10 +9,20 @@ import { useGeneralAppContext } from "../../functions/useGeneralAppContext"
 
 export default function ProductBody({ id }: { id: string }) {
 
+    const [loading, setLoading] = useState(false)
     const featuredItemsUrl = `${import.meta.env.VITE_SERVER_URL}item/storeitems/${id}`
+
     async function fetchFeaturedItems() {
-        const response = await axios.get(featuredItemsUrl)
-        return response.data as itemType
+        setLoading(true)
+        try {
+
+            const response = await axios.get(featuredItemsUrl)
+            return response.data as itemType
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     const queryClient = useQueryClient();
@@ -25,7 +35,7 @@ export default function ProductBody({ id }: { id: string }) {
         window.scrollTo(0, 0)
     }, [])
 
-    const { data, isLoading, error } = useQuery('item', fetchFeaturedItems)
+    const { data, error } = useQuery('item', fetchFeaturedItems)
 
     async function addToCart() {
         if (currentUser === null) {
@@ -53,9 +63,9 @@ export default function ProductBody({ id }: { id: string }) {
     }
 
     return (
-        <section className="px-4 md:px-10 lg:px-20 py-8">
-            {isLoading ? (
-                <div className="md:hidden flex items-center justify-center">
+        <section className="px-4 md:px-10 lg:px-20 py-8 flex flex-col flex-grow">
+            {loading ? (
+                <div className=" flex-grow flex items-center justify-center">
                     <Loader />
                 </div>
             ) : error ? (

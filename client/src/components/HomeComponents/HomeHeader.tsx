@@ -40,11 +40,12 @@ export default function HomeHeader() {
                         </div>
                     ))}
                 </div>
-                <h1 className="font-bold text-[2rem] md:text-[3rem]">Elevate Your Steeze with Our Exquisite Collection</h1>
+                <h1 className="font-bold text-[2rem] md:text-[3rem]">Improve your health with our most healthy foods</h1>
                 <p className="md:text-[1.2rem]">
-                    Shop with Steeze, where sophistication meets style. Discover our exquisite collection of men's jewelry,
-                    meticulously crafted to elevate your everyday look. Whether you're seeking classic elegance or bold statements,
-                    we have the perfect piece to complement your unique style. Start your style journey with us today.
+                    We have been producing irresistible food products since 2015. Our mission is to keep you smiling with every purchase.
+                </p>
+                <p className="md:text-[1.2rem]">
+                    Get yourself a great quality product today!
                 </p>
                 <Link to='/shop'>
                     <button

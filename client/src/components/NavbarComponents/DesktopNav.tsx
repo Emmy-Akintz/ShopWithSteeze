@@ -46,11 +46,15 @@ export default function DesktopNav({ cartItems }: { cartItems: cartType[] | unde
                     <Link to='/contact'>Contact</Link>
                 </nav>
             </div>
-            <div className='flex items-center justify-center'>
+            {/* <div className='flex items-center justify-center'>
                 <img
                     src='/BlackLogo.svg'
                     className='w-[50%] flex items-center'
                 />
+            </div> */}
+            <div className='text-center'>
+                <h1 className='font-bold'>Larry-Pat Foods</h1>
+                <h3>The best quality food there is</h3>
             </div>
             <div className='flex items-center justify-end gap-6 text-[1.5rem]'>
                 <i className='cursor-pointer'><HiOutlineHeart /></i>

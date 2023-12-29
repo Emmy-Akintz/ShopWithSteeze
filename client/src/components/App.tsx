@@ -11,7 +11,6 @@ import { useGeneralAppContext } from '../functions/useGeneralAppContext'
 import Account from './AuthComponents/Account'
 import queryClient from './queryClient'
 
-
 function App() {
 
   const { showSignup, showLogin, showAccount } = useGeneralAppContext()

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getDatabase} from "firebase/database"
+import { getDatabase } from "firebase/database"
 import { getAuth } from "firebase/auth"
 
 
@@ -12,8 +12,10 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_STORAGEBUCKET,
   messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
   appId: import.meta.env.VITE_APPID,
-  measurementId: import.meta.env.VITE_MEASUREMENTID 
+  measurementId: import.meta.env.VITE_MEASUREMENTID
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
